@@ -11,11 +11,37 @@ To install dependencies, run `pip3 install -r requirements.txt`
 
 
 ## Description
+Traditional Snake game: https://www.google.com/search?q=classic+snake+game&oq=classic+snake+&aqs=chrome.0.0i20i263i433j69i57j0j0i20i263j0j46j0l4.1812j0j4&sourceid=chrome&ie=UTF-8
+
 This implementation of the Snake AI game was adapted from Chrispresso (https://github.com/Chrispresso/SnakeAI.git), who has this code licensed under an open-source MIT license. 
-In the traditional Snake game (https://www.google.com/search?q=classic+snake+game&oq=classic+snake+&aqs=chrome.0.0i20i263i433j69i57j0j0i20i263j0j46j0l4.1812j0j4&sourceid=chrome&ie=UTF-8), you are the snake and use the arrow keys to eat as many apples as you can without dying by crashing into yourself or the walls. In this adaptation of the game, I have coded an AI snake that uses reinforcement learning to learn from its mistakes/failures and progressively get smarter. I have also added a yellow obstacle to the game to make it more interesting.
-As you can see in the AI videos, the AI snake's initial performance is quite poor, but through back propagation using a 4-layer neural network and a fitness algorithm, it is able to gradually improve and eventually perform as well as (or even better than) humans. After hundreds of generations and hours of training, the AI snake is able to achieve a score of over 50 (high score: 100)! 
-Through reinforcement learning, the AI is able to identify the optimal (shortest) path to pick up all the apples and avoid obstacles without dying. An interesting phenomenon is that the AI snake develops a clockwise-like pattern to navigate the map and eat the apples. It also does quite well in avoiding the walls, as well as the obstacle we added.
+
+In the traditional snake game, you are the snake and use the arrow keys to eat as many apples as you can without dying by crashing into yourself or the walls. In this adaptation of the game, I have coded an AI snake that uses reinforcement learning to learn from its mistakes/failures and progressively get smarter. I have also added a yellow obstacle to the game to make it more interesting.
+
+
+## How the AI Snake Learns
+Through reinforcement learning, the AI is able to identify the optimal (shortest) path to pick up all the apples and avoid obstacles without dying. As you can see in the AI videos, the AI snake's initial performance is quite poor, but through back propagation using a 4-layer neural network and a fitness algorithm, it is able to gradually improve and eventually perform as well as (or even better than) humans. 
+
+The snake is also able to learn through a fitness algorithm, which rewarded snakes that picked up more apples and punished ones with a high number of steps. There are 500 parent snakes in Generation 0, which generate 1500 offspring each new generation. There is a slight chance of mutation each round, and the snakes with the best fitness reproduce.
+
+The 4-layer neural network is also integral to the AI Snake's success. The first layer of the neural network has 40 input nodes: 8 for wall vision (NE, NW, SE, SW, N, S, E, W), 8 for self vision, 8 for apple vision, 4 for head direction (U, D, L, R), 4 for tail direction, and 8 for obstacle vision. There are also 2 hidden layers - the first has 20 nodes, and the second has 12 nodes. The last layer of the neural netwoork has 4 nodes, corresponding to the snake's ultimate head direction (U, D, L, R).
+
+After hundreds of generations and hours of training, the AI snake is able to achieve a score of over 50 (high score: 100)! 
+
+An interesting phenomenon is that the AI snake develops a clockwise-like pattern to navigate the map and eat the apples. It also does quite well in avoiding the walls, as well as the obstacle we added.
+
+
+## Applications
 This project has numerous real-world, practical applications. For instance, the path of the snake is similar to that of an uber driver using “Uber Pool” - the apples are similar to passengers waiting to be picked up, and the obstacles are similar to roadblocks and traffic jams. Hence, the same reinforcement learning models used to solve this adapted version of “Snake” could also be used to maximize the efficiency of “Uber Pool,” as well as numerous others fascinating applications.
+
+
+## Future Goals
+Additional avenues to explore with our snake AI include:
+1. Experiment with fitness formula to train faster
+2. Multiple snakes
+3. Multiple obstacles
+4. Moving apples 
+5. Moving obstacles
+6. More obstacles & apples as game goes on
 
 
 
